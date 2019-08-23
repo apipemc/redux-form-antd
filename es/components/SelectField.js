@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _immutable = require("immutable");
+
 var _mapError = require("../maps/mapError");
 
 var _BaseComponent = _interopRequireDefault(require("./BaseComponent"));
@@ -26,6 +28,10 @@ var selectFieldMap = (0, _mapError.customMap)(function (mapProps, _ref) {
       multiple = _ref.multiple,
       options = _ref.options,
       placeholder = _ref.placeholder;
+
+  if ((0, _immutable.isImmutable)(value)) {
+    value = value.toJS();
+  }
 
   if (!placeholder && options && options.length > 0) {
     value = value ? value : multiple ? [options[0].value] : options[0].value;
